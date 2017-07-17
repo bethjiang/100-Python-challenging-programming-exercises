@@ -173,7 +173,57 @@ print(a)
 such that each digit of the number is an even number.
 The numbers obtained should be printed in a comma-separated sequence on a single line.
 
+a = []
+for i in range(1000,3001):
+    s = str(i)
+    if (int(s[0]) % 2) == 0 and (int(s[2]) % 2) == 0 and (int(s[3]) % 2) == 0 and (int(s[3]) % 2) == 0:
+        a.append(s)
+print(a)
 
+13.Write a program that accepts a sentence and calculate the number of letters and digits.
+Suppose the following input is supplied to the program:
+hello world! 123
+Then, the output should be:
+LETTERS 10
+DIGITS 3
+
+a = input("plz input your words and numbers:")
+d = {"digit":0,"letters":0}
+for i in a:
+    if i.isdigit():
+        d["digit"]+=1
+    elif i.isalpha():
+        d["letters"]+=1
+    else:
+        pass
+print("LETTERS",d["letters"])
+print("DIGITS",d["digit"])
+
+14.Write a program that accepts a sentence and calculate the number of upper case letters 
+and lower case letters.
+Suppose the following input is supplied to the program:
+Hello world!
+Then, the output should be:
+UPPER CASE 1
+LOWER CASE  9
+
+a = input("plz input your words and numbers:")
+d = {"UPPER CASE":0,"LOWER CASE":0}
+for i in a:
+    if i.istitle():
+        d["UPPER CASE"]+=1
+    elif i.islower():
+        d["LOWER CASE"]+=1
+    else:
+        pass
+print("UPPER CASE",d["UPPER CASE"])
+print("LOWER CASE ",d["LOWER CASE"])
+
+15.Write a program that computes the value of a+aa+aaa+aaaa with a given digit as the value of a.
+Suppose the following input is supplied to the program:
+9
+Then, the output should be:
+11106
 
 
 
