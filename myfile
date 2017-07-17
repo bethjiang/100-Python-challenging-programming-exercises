@@ -146,4 +146,35 @@ Then, the output should be:
 HELLO WORLD
 PRACTICE MAKES PERFECT
 
+word = input("plz write a sequence:")
+if word:
+    print(word.upper())
+else:
+    break
+    
+11.Write a program that accepts a sequence of whitespace separated words as input and prints the words after removing all duplicate words and sorting them alphanumerically.
+Suppose the following input is supplied to the program:
+hello world and practice makes perfect and hello world again
+Then, the output should be:
+again and hello makes perfect practice world
+
+import collections
+sentence = """hello world and practice makes perfect and hello world again"""
+words = sentence.split()
+#word_counts = collections.Counter(words)
+a = []
+for i in words:
+    if i not in a:
+        a.append(i)
+
+print(a)
+
+12. Write a program, which will find all such numbers between 1000 and 3000 (both included) 
+such that each digit of the number is an even number.
+The numbers obtained should be printed in a comma-separated sequence on a single line.
+
+
+
+
+
 
