@@ -438,3 +438,19 @@ choosing:1
 or:2
 to:1
 
+def frequency(s):
+    d = {}
+    for i in s:
+        d[i] = d.get(i,0)+1
+    return d
+   
+s = "ajfklsadf34u2393484ieruiqo"
+print(frequency(s))
+
+23.Question:
+    Create a Tic Tac Toe game. You are free to use any IDE you like.
+Here are the requirements:
+2 players should be able to play the game (both sitting at the same computer)
+The board should be printed out every time a player makes a move
+You should be able to accept input of the player position and then place a symbol on the board
+
