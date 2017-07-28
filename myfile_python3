@@ -528,3 +528,20 @@ while game_start:
         else:
             turn = "server"
             print("it's server turn.")
+            
+24. how to convert text to html:
+server_list = '''
+============== ============ ================
+...: Server Name IP Address Function
+...: ============== ============ ================
+...: card 192.168.1.2 mail server
+...: vinge 192.168.1.4 web server
+...: asimov 192.168.1.8 database server
+...: stephenson 192.168.1.16 file server
+...: gibson 192.168.1.32 print server
+...: ============== ============ ================
+'''
+content = open(r"C:\Users\lj\Desktop\book\pythonts.txt",'r')
+with open(r"C:\Users\lj\Desktop\book\at.html",'w') as e:
+    for line in content.readlines():
+        e.write(line+"<br>\n")
