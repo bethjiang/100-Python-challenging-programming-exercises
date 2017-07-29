@@ -545,3 +545,73 @@ content = open(r"C:\Users\lj\Desktop\book\pythonts.txt",'r')
 with open(r"C:\Users\lj\Desktop\book\at.html",'w') as e:
     for line in content.readlines():
         e.write(line+"<br>\n")
+        
+25.
+import socket
+import sys
+
+def check_server(address,port):
+    s = socket.socket()
+    print("attempt to connect to %s on port %s"% (address,port))
+    try:
+        s.connect((address,port))
+        print("Connected to %s on port %s"% (address, port))
+        return True
+    except socket.error:
+        print("Connection to %s on port %s failed" % (address, port))
+        return False
+
+
+if __name__ == '__main__':
+    from optparse import OptionParser
+    parser = OptionParser()
+    parser.add_option("-a", "--address", dest="address", default='localhost',help="ADDRESS for server", metavar="ADDRESS")
+    parser.add_option("-p", "--port", dest="port", type="int", default=80,help="PORT for server", metavar="PORT")
+    (options, args) = parser.parse_args()
+    print("options: %s, args: %s"% (options, args))
+    check = check_server(options.address, options.port)
+    print("check_server returned %s"% check)
+    sys.exit(not check)
+    
+26.
+import sys
+from io import StringIO
+def d_logfile(lines):
+    read_line = lines.split(' ')
+    return {"server": read_line[0],
+            "code": read_line[8],
+            "bytes": read_line[9],
+            "pageinfo": read_line[10]
+    }
+
+def parse_logfiles(logfile):
+    dict_logfile = {}
+    for line in logfile:
+        dlogfile = d_logfile(line)
+        try:
+            d_byte = int(dlogfile['bytes'])
+            d_code = int(dlogfile['code'])
+        except ValueError:
+            continue
+        dict_logfile.setdefault(dlogfile["server"],[]).append(d_byte)
+        dict_logfile.setdefault(dlogfile["server"],[]).append(d_code)
+        return dict_logfile
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        sys.exit(1)
+    infile_name = sys.argv[1]
+    try:
+        infile = open(infile_name,'r')
+    except IOError:
+        print("you must specify a valid file.")
+        sys.exit(1)
+    log_report = parse_logfiles(infile)
+    infile.close()
+    print(log_report)
+    report_html = (r"C:\Users\aaa\Desktop\book\at.html")
+    with open(report_html,'w') as e:
+        for i in log_report.items():
+            a = "the server {0} has {1}".format(i[0],i[1])
+            e.write(str(a) + "<br>\n")
