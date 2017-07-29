@@ -660,4 +660,4 @@ def check_webserver(address,port,resource):
         print("failed,the status is %s" % line_new[1])
         return False
 
-check_webserver("52.63.161.99",80, 'query/hongx')
+check_webserver("52.63.161.00",80, 'query/hongx')
