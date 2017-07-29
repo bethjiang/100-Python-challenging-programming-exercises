@@ -615,3 +615,49 @@ if __name__ == "__main__":
         for i in log_report.items():
             a = "the server {0} has {1}".format(i[0],i[1])
             e.write(str(a) + "<br>\n")
+            
+  27.
+  import socket
+import sys
+import re
+
+def check_webserver(address,port,resource):
+    if not resource.startswith('/'):
+        resource = '/' + resource
+    request_string = "GET %s HTTP/1.1\nHost: %s\r\n\r\n"% (resource,address)
+    print('HTTP request:')
+    print('%s'% request_string)
+
+    s = socket.socket()
+    print("Attempting to connect %s on port %s"% (address,port))
+    try:
+        s.connect((address,port))
+        print("connected to connect %s on port %s"% (address,port))
+        s.send(request_string.encode())
+        rsp = s.recv(1000)
+        print("received 1000 bytes of HTTP response")
+        print('%s'% rsp)
+    except socket.error:
+        print("Connection to %s on port %s failed" % (address, port))
+        return False
+    # finally:
+    #     print("closing the connection")
+    #     s.close()
+    line = rsp.splitlines()
+    print("First line of HTTP response: %s" % line[0])
+    try:
+        line_new = str(line[0],encoding='utf-8')
+        line_new = list(line_new.split())
+        print(line_new[0])
+        print("version:%s,status:%s,message:%s"% (line_new[0],line_new[1],line_new[2]))
+    except ValueError:
+        print("failed to split status line")
+        return False
+    if line_new[1] in  ['200','301']:
+        print("sucess,the status is %s"%line_new[1])
+        return True
+    else:
+        print("failed,the status is %s" % line_new[1])
+        return False
+
+check_webserver("52.63.161.99",80, 'query/hongx')
