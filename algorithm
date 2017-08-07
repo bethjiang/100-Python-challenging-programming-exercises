@@ -7,6 +7,14 @@ def Jos(a):
         print (a[i])
         del a[i]
         
+def Jos(a,idx):
+    N = len(a)
+    if N < 3: return
+    i = (idx+2)%N
+    print(a[i])
+    del a[i]
+    Jos(a, i)
+        
 def Jos(a):
     while len(a) > 3:
         b = []
