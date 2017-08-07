@@ -1,5 +1,13 @@
 1. Josepy game:
 def Jos(a):
+    N = len(a)
+    i = 0
+    while len(a) >= 3:
+        i = (i+2)%len(a)
+        print (a[i])
+        del a[i]
+        
+def Jos(a):
     while len(a) > 3:
         b = []
         for i in range(len(a)):
