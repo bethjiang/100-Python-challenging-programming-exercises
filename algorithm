@@ -40,4 +40,32 @@ def Jos2(a):
 a = [i for i in range(1,1600000)]
 Jos2(a)
 
-2. 
+2. def opr(oper,x,y):
+    if oper == '+':
+        return y+x
+    if oper == '-':
+        return y-x
+    if oper == '*':
+        return y*x
+    if oper == '/':
+        return y/x
+
+def RPN(list):
+    l = len(list)
+    if l == 0: return
+    a = []
+    for i in range(0,len(list)):
+        idx = list[i]
+        if idx == '-' or idx == '+' or idx == '*' or idx == '/':
+            x = a.pop()
+            y = a.pop()
+            a.append(int(opr(idx,x,y)))
+        else:
+            a.append(idx)
+    return a
+
+
+list = (1,2,'-',4,5,'+','*')
+print(RPN(list))
+
+3. 
