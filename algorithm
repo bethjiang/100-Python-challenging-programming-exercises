@@ -68,4 +68,13 @@ def RPN(list):
 list = (1,2,'-',4,5,'+','*')
 print(RPN(list))
 
-3. 
+3. 汉诺塔
+def move(i,n,a,b,c):
+    if n == 1:
+        print(i, a, "->", c)
+        return
+    move(n-1, n-1,a,c,b)
+    move(n,   1,  a,b,c)
+    move(n-1, n-1,b,a,c)
+
+move(4, 4,'a','b','c')
