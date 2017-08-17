@@ -78,3 +78,54 @@ def move(i,n,a,b,c):
     move(n-1, n-1,b,a,c)
 
 move(4, 4,'a','b','c')
+
+4. 
+class Node():
+    def __init__(self,val):
+        self.l = None
+        self.r = None
+        self.v = val
+
+
+class Tree():
+    def __init__(self):
+        self.root = None
+
+    def getroot(self):
+        return self.root
+
+    def add(self,val):
+        if self.root == None:
+            self.root = Node(val)
+        else:
+            self._add(val,self.root)
+
+    def _add(self,val,node):
+        if val < node.v:
+            if node.l != None:
+                self._add(val,node.l)
+            else:
+                node.l = Node(val)
+        else:
+            if node.r != None:
+                self._add(val,node.r)
+            else:
+                node.r = Node(val)
+
+    def printtree(self):
+        if self.root != None:
+            return self._printtree(self.root)
+
+    def _printtree(self,node):
+        if node != None:
+            print(node.v)
+            self._printtree(node.l)
+            self._printtree(node.r)
+
+tree = Tree()
+tree.add(3)
+tree.add(1)
+tree.add(6)
+tree.add(1)
+tree.add(9)
+tree.printtree()
