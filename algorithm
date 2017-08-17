@@ -129,3 +129,15 @@ tree.add(6)
 tree.add(1)
 tree.add(9)
 tree.printtree()
+
+5.八皇后问题
+from itertools import *
+cols = range(n)
+count = 0
+for vec in permutations(cols):
+    if (n == len(set(vec[i]+i for i in cols))
+          == len(set(vec[i]-i for i in cols))):
+        count += 1
+        print(vec)
+        print(count)
+        
