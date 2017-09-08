@@ -141,3 +141,23 @@ for vec in permutations(cols):
         print(vec)
         print(count)
         
+ 6. recursion
+# def length(string):
+#     if string == '':
+#         return 0
+#     return length(string[1:])+1
+#
+# print(length('hello'))
+
+
+
+def swap(string):
+    l = len(string)
+    if l <= 1:
+        return string
+    if l == 2:
+        return string[1:]+string[0:1]
+    return swap(string[0:2]) + swap(string[2:l])
+
+print(swap('abcdef')) 
+        
